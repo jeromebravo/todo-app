@@ -1,0 +1,46 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin-bottom: 20px;
+    width: 25%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    color: white;
+    background-color: blueviolet;
+    border-radius: 30px;
+    border: none;
+    width: 25%;
+    padding: 13px 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width: 800px) {
+    button {
+        width: 30%;
+    }
+
+    input {
+        width: 30%;
+    }
+}

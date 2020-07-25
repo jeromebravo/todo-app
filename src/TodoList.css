@@ -1,0 +1,25 @@
+div {
+    color: white;
+}
+
+ul {
+    list-style: none;
+    margin: auto;
+    width: 35%;
+    line-height: 60px;
+    text-align: center;
+    padding: 0;
+}
+
+li {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    background-color: blueviolet;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+li:hover {
+    transform: scale(1.1);
+    background-color: red;
+}

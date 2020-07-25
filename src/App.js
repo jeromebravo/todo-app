@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Navbar from './Navbar';
+import { Route, Redirect } from 'react-router-dom';
+import TodoList from './TodoList';
+import { connect } from 'react-redux';
+import { addTodo, removeTodo } from './actionCreator';
+import NewTodoForm from './NewTodoForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.removeTodo = this.removeTodo.bind(this);
+    }
+
+    handleSubmit(task) {
+        this.props.addTodo(task);
+    }
+
+    removeTodo(id) {
+        this.props.removeTodo(id);
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Navbar />
+                <Route exact path='/' render={() => <Redirect to='/todos' />} />
+                <Route exact path='/todos' component={() => <TodoList tasks={this.props.todos} removeTodo={this.removeTodo} />} />
+                <Route path='/todos/new' component={props => <NewTodoForm {...props} handleSubmit={this.handleSubmit} />} />
+            </div>
+      );
+    }
 }
 
-export default App;
+function mapStateToProp(reduxState) {
+    return {todos: reduxState.todos};
+}
+
+export default connect(mapStateToProp, {addTodo, removeTodo})(App);
